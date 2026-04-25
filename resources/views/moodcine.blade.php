@@ -50,16 +50,21 @@
         <div class="col-lg-8">
             <div class="tarjeta-formulario p-4">
 
-                <form>
+                <form action="{{url('/recomendar')}}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="estado_animo" class="form-label">¿Cómo te sientes hoy?</label>
-                        <textarea class="form-control" id="estado_animo" rows="3"
+                        <textarea class="form-control" id="estado_animo" name="estado_animo" rows="3"
                             placeholder="Ejemplo: Tuve un día pesado y quiero ver algo divertido..."></textarea>
+                             <!--alerta de error para el titulo-->
+                            @error('estado_animo')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="genero" class="form-label">Género favorito</label>
-                        <select class="form-select" id="genero">
+                        <select class="form-select" id="genero" name="genero">
                             <option selected disabled>Selecciona un género</option>
                             <option>Comedia</option>
                             <option>Drama</option>
@@ -70,11 +75,14 @@
                             <option>Ciencia ficción</option>
                             <option>Animación</option>
                         </select>
+                        @error('genero')
+                                <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label for="plataforma" class="form-label">Plataforma</label>
-                        <select class="form-select" id="plataforma">
+                        <select class="form-select" id="plataforma" name="plataforma">
                             <option selected disabled>Selecciona una plataforma</option>
                             <option>Netflix</option>
                             <option>Max</option>
@@ -82,10 +90,13 @@
                             <option>Prime Video</option>
                             <option>Hulu</option>
                         </select>
+                        @error('plataforma')
+                                <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="text-center">
-                        <button type="button" class="btn btn-moodcine">
+                        <button type="submit" class="btn btn-moodcine">
                             Recomendar películas
                         </button>
                     </div>
