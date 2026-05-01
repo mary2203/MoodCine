@@ -50,7 +50,7 @@
         <div class="col-lg-8">
             <div class="tarjeta-formulario p-4">
 
-                <form action="{{url('/recomendar')}}" method="POST">
+                <form action="{{url('/recomendar')}}" method="POST" id="formularioRecomendar">
                     @csrf
                     <div class="mb-3">
                         <label for="estado_animo" class="form-label">¿Cómo te sientes hoy?</label>
@@ -110,7 +110,7 @@
     <div class="mt-5">
         <h2 class="text-center mb-4 titulo-seccion">Recomendaciones para ti</h2>
 
-        <div class="row g-4">
+        <div class="row g-4" id="contenedorPeliculas">
 
             @foreach ($peliculasMostradas as $pelicula)
                 <div class="col-md-4">
@@ -158,3 +158,82 @@
 
 </body>
 </html>
+
+<script>
+    //este evento se encarga de escuchar el submit del formulario para obtener las recomendaciones, cuando se envia el formulario se previene la accion por defecto para evitar que se recargue la pagina y se obtiene los datos del formulario para enviarlos al backend y obtener las recomendaciones de las peliculas
+    document.getElementById("formularioRecomendar").addEventListener("submit", function(e){
+        e.preventDefault();
+
+        //se obtiene los datos del formulario para enviarlos al backend y obtener las recomendaciones de las peliculas
+        let formData = new FormData(this);
+        
+        //se declara el contenedor donde se van a mostrar las peliculas recomendadas
+        let contenedor = document.getElementById("contenedorPeliculas");
+        
+        //este contenedor es el que va a tener el icono de carga mientras se obtienen las recomendaciones
+        contenedor.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                <div class="spinner-border text-moodcine" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+        `;
+
+        //este fetch se encarga de enviar los datos del formulario para obtener las recomendaciones de las peliculas, se envia un POST a recomendar con los datos y se le incluyo el token de seguridad para evitar ataques CSRF y el backend se encarga de procesar los datos
+        fetch("/recomendar", {
+            method: "POST",
+            body: formData,
+            headers: {
+                //este token se incluye en un header para que le backend verifique y permita procesar la solicitud y tambien es una medida de seguridad para evitar ataques.
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            }
+        })
+        //este then se va a encargar de verificar si la respuesta es exitosa o si ocurrio algun error que impida obtener las recomendaciones, en caso de error se lanza una excepción para que el siguiente catch se encargue de mostrar el mensaje de error al usuario
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {throw err });
+            }
+            return response.json();
+        })
+        //este then se va a encargar de renderizar las peliculas recomendadas en el contenedor cuando se obtengan los datos correctamente
+        .then(data => {
+            renderPeliculas(data);
+        })
+        //este catch es el que se encarga de mostrar el mensaje de erroe en el contenedor 
+        .catch(error => {
+            //se declara el contenedor donde se van a mostrar las peliculas recomendadas
+            let contenedor = document.getElementById("contenedorPeliculas");
+
+            //este contenedor es el que va a mostrar el mensaje de error si ocurre para obtener las recomendaciones
+            contenedor.innerHTML =`
+                <div class="alert alert-danger" role="alert">
+                    Ocurrió un error al obtener las recomendaciones. Por favor, intenta nuevamente.
+                </div>
+            `;
+        });
+    });
+
+    //esta funcion es para renderizar las peliculas en el contenedor
+    function renderPeliculas(peliculas){
+        let contenedor = document.getElementById("contenedorPeliculas");
+        contenedor.innerHTML = "";
+
+        //este codigo se envcarga de recorrer el array de peliculas que va a renderizar y por cada pelicula va a crear una tarjeta con la informacion de la pelicula y la va a agregar al contenedor para mostrarla
+        peliculas.forEach(pelicula => {
+            contenedor.innerHTML += `
+                <div class="col-md-4">
+                    <div class="card tarjeta-pelicula h-100">
+                        <img src="/${pelicula.imagen}" class="poster-pelicula">
+                        <div class="card-body">
+                            <h5>${pelicula.titulo}</h5>
+                            <p>Año: ${pelicula.anio}</p>
+                            <p><strong>Género:</strong> ${pelicula.genero}</p>
+                            <p><strong>Mood:</strong> ${pelicula.mood}</p>
+                            <p>${pelicula.descripcion}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+</script>

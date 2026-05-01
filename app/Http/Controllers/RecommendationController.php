@@ -98,7 +98,8 @@ class RecommendationController extends Controller
         shuffle($peliculasMostradas);
         $peliculasMostradas = array_slice($peliculasMostradas, 0, 5);
         
-        return view('moodcine', compact('peliculasMostradas'));
+        //aqui modifique el return para que devuelva la respuesta en formato json para el frontend que pueda procesarlos y mostrarlos en el contenedor de recomendaciones.
+        return response()->json($peliculasMostradas);
     }
 
     //funcion para mostrar la pagina de recomendaciones de donde se muestran todas las recomendaciones de las peliculas que se encuentran disponibles
