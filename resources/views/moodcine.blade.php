@@ -234,7 +234,9 @@
             contenedor.innerHTML += `
                 <div class="col-md-4">
                     <div class="card tarjeta-pelicula h-100">
-                        <img src="/${pelicula.imagen}" class="poster-pelicula">
+                        <img src="${pelicula.poster_url ?? '/images/default-poster.jpg'}" 
+                        class="poster-pelicula"
+                        alt="${pelicula.titulo}">
                         <div class="card-body">
                             <h5>${pelicula.titulo}</h5>
                             <p>Año: ${pelicula.anio}</p>
