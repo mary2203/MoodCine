@@ -8,6 +8,9 @@ use App\Models\MovieRecommendation;
 
 use App\Http\Requests\StoreRecommendationRequest;
 
+//se importa el servicio de GROQ para usarlo en el controlador
+use App\Services\GroqService;
+
 class RecommendationController extends Controller
 
 
@@ -86,6 +89,11 @@ class RecommendationController extends Controller
     //esta funcion es para recibir los datos del formulario de recomendacion
     public function recomendar(StoreRecommendationRequest $request)
     {
+
+        //aqui coloco el llamdo al servicio de groq
+        $groq = new GroqService();
+
+
         //Aqui se guarda las entradas del formulario
         MovieRecommendation::create([
             'estado_animo'=>$request->estado_animo,
@@ -93,13 +101,15 @@ class RecommendationController extends Controller
             'plataforma'=>$request->plataforma
         ]);
 
-        //aqui muestra las peliculas para que sean aleatorias
-        $peliculasMostradas = $this->peliculas;
-        shuffle($peliculasMostradas);
-        $peliculasMostradas = array_slice($peliculasMostradas, 0, 5);
+        //estaq funcion se encarga de llamar al servicio de groq para obtener las recomendaciones de peliculas basadas en el estado de animo, genero y plataforma que el usuario selecciono en el formulario, y luego devuelve la respuesta en formato json para que el frontend pueda procesarla y mostrarla en el contenedor de recomendaciones.
+        $respuesta = $groq->recomendarPeliculas(
+            $request->estado_animo,
+            $request->genero,
+            $request->plataforma
+        );
         
         //aqui modifique el return para que devuelva la respuesta en formato json para el frontend que pueda procesarlos y mostrarlos en el contenedor de recomendaciones.
-        return response()->json($peliculasMostradas);
+        return response()->json($respuesta);
     }
 
     //funcion para mostrar la pagina de recomendaciones de donde se muestran todas las recomendaciones de las peliculas que se encuentran disponibles

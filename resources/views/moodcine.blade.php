@@ -185,13 +185,14 @@
             body: formData,
             headers: {
                 //este token se incluye en un header para que le backend verifique y permita procesar la solicitud y tambien es una medida de seguridad para evitar ataques.
-                'X-CSRF-TOKEN': '{{csrf_token()}}'
+                'X-CSRF-TOKEN': '{{csrf_token()}}',
+                'Accept': 'application/json'
             }
         })
         //este then se va a encargar de verificar si la respuesta es exitosa o si ocurrio algun error que impida obtener las recomendaciones, en caso de error se lanza una excepción para que el siguiente catch se encargue de mostrar el mensaje de error al usuario
         .then(response => {
             if (!response.ok) {
-                return response.json().then(err => {throw err });
+                return response.json().then(err => Promise.reject(err));//aqui se le cambio el throw err por el promise.reject(err) para que el error se maneje en el siguiente catch y se muestre el mensaje de error al usuario en el contenedor de recomendaciones.
             }
             return response.json();
         })
@@ -217,6 +218,16 @@
     function renderPeliculas(peliculas){
         let contenedor = document.getElementById("contenedorPeliculas");
         contenedor.innerHTML = "";
+
+        //para mostrar si no se encontraron las recomendaciones, que verifica si esta valido el array y si no tiene peliculas muestra el mensaje de error
+        if (!Array.isArray(peliculas) || peliculas.length===0){
+            contenedor.innerHTML = `
+                <div class="alert alert-info" role="alert">
+                    No se encontraron recomendaciones para tu estado de ánimo y preferencias. Intenta con una descripción diferente o selecciona otros géneros y plataformas.
+                </div>
+            `;
+            return;
+        }
 
         //este codigo se envcarga de recorrer el array de peliculas que va a renderizar y por cada pelicula va a crear una tarjeta con la informacion de la pelicula y la va a agregar al contenedor para mostrarla
         peliculas.forEach(pelicula => {
