@@ -1,5 +1,10 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
+    padding-top: 90px;
     font-family: 'Source Sans Pro', sans-serif;
     color: #ffffff;
     background-image:
@@ -11,10 +16,13 @@ body {
     background-attachment: fixed;
 }
 
+/*para los titulos*/
+
 .titulo-principal,
 .titulo-seccion {
-    font-size: 3rem;
+    font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 700;
+    line-height: 1.05;
 }
 
 .subtitulo {
@@ -24,86 +32,7 @@ body {
     color: #d6d6d6;
 }
 
-.tarjeta-formulario {
-    border: none;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #4e1313, #110a2b);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.form-control,
-.form-select {
-    padding: 12px;
-    border-radius: 12px;
-}
-
-label {
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #f3f3f3;
-}
-
-.btn-moodcine {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 12px;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #a82828;
-}
-
-.btn-moodcine:hover {
-    color: #ffffff;
-    background-color: #a82828;
-}
-
-.tarjeta-pelicula {
-    overflow: hidden;
-    border: none;
-    border-radius: 18px;
-    color: #1f1f1f;
-    background-color: #ffffff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-    transition: transform 0.2s ease;
-}
-
-.tarjeta-pelicula:hover {
-    transform: translateY(-5px);
-}
-
-.imagen-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 220px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #ffffff;
-    background: linear-gradient(135deg, #923544, #923544);
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.anio-pelicula {
-    font-size: 0.9rem;
-    color: #6c757d;
-}
-
-.genero-pelicula {
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-    color: #444444;
-}
-
-.mood-pelicula {
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #a82828;
-}
+/*estilo del navbar*/
 
 .navbar-moodcine {
     padding: 14px 0;
@@ -128,6 +57,414 @@ label {
     color: #a82828 !important;
 }
 
+/*botones*/
+
+.btn-moodcine {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #a82828;
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn-moodcine:hover {
+    color: #ffffff;
+    background-color: #b93131;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(168, 40, 40, 0.35);
+}
+
+/*baner de hero*/
+
+.hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 700px;
+    overflow: hidden;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    padding: 90px;
+    background: #070713;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+}
+
+.hero-banner-text {
+    position: relative;
+    z-index: 3;
+    max-width: 680px;
+}
+
+.hero-banner-images {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-banner-images::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 0, 20, 0.98) 0%,
+            rgba(5, 0, 20, 0.90) 28%,
+            rgba(5, 0, 20, 0.55) 55%,
+            rgba(5, 0, 20, 0.18) 78%,
+            rgba(5, 0, 20, 0.05) 100%
+        );
+}
+
+.hero-banner-images img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    filter: brightness(0.9) contrast(1.05);
+    animation: bannerPosterFade 48s infinite ease-in-out;
+}
+
+.hero-banner-images img:nth-child(1) { animation-delay: 0s; }
+.hero-banner-images img:nth-child(2) { animation-delay: 4s; }
+.hero-banner-images img:nth-child(3) { animation-delay: 12s; }
+.hero-banner-images img:nth-child(4) { animation-delay: 18s; }
+.hero-banner-images img:nth-child(5) { animation-delay: 24s; }
+.hero-banner-images img:nth-child(6) { animation-delay: 30s; }
+.hero-banner-images img:nth-child(7) { animation-delay: 36s; }
+.hero-banner-images img:nth-child(8) { animation-delay: 42s; }
+.hero-banner-images img:nth-child(9) { animation-delay: 48s; }
+.hero-banner-images img:nth-child(10) { animation-delay: 54s; }
+
+@keyframes bannerPosterFade {
+
+    0% {
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/*cards*/
+
+.tarjeta-formulario {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #4e1313, #110a2b);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.tarjeta-formulario:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(168, 40, 40, 0.18);
+}
+
+.tarjeta-formulario::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.08),
+            transparent
+        );
+}
+
+.tarjeta-formulario:hover::before {
+    opacity: 1;
+}
+
+.tarjeta-formulario h3,
+.tarjeta-formulario h4,
+.tarjeta-formulario h5,
+.tarjeta-formulario p {
+    color: #ffffff;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.paso-numero {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #a82828 !important;
+    opacity: 0.9;
+}
+
+/*cards de peliculas*/
+
+.tarjeta-pelicula {
+    max-width: 330px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: none;
+    border-radius: 18px;
+    color: #1f1f1f;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.tarjeta-pelicula:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.28);
+}
+
+.poster-pelicula {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.tarjeta-pelicula .card-body {
+    padding: 16px;
+}
+
+.tarjeta-pelicula .card-title,
+.tarjeta-pelicula h5 {
+    font-size: 1.1rem;
+}
+
+.tarjeta-pelicula p {
+    font-size: 0.9rem;
+}
+
+.anio-pelicula {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.genero-pelicula {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #444444;
+}
+
+.mood-pelicula {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #a82828;
+}
+
+/*forms*/
+
+.form-control,
+.form-select {
+    padding: 12px;
+    border-radius: 12px;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #f3f3f3;
+}
+
+/*badges*/
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.tech-badges span {
+    padding: 14px 24px;
+    border-radius: 999px;
+    color: #ffffff;
+    font-weight: 600;
+    background: rgba(168, 40, 40, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.tech-badges span:hover {
+    transform: translateY(-8px) scale(1.06);
+    background: rgba(168, 40, 40, 0.6);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.28),
+        0 0 18px rgba(168, 40, 40, 0.3);
+}
+
+/*estilo team*/
+
 img.rounded-circle {
     border: 3px solid rgba(168, 40, 40, 0.4);
+}
+
+/*scroll reveal*/
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(80px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/*poster fade support*/
+
+.poster-fade {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 620px;
+    margin-left: auto;
+}
+
+.poster-fade img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    animation: posterFade 48s infinite ease-in-out;
+}
+
+.poster-fade img:nth-child(1) { animation-delay: 0s; }
+.poster-fade img:nth-child(2) { animation-delay: 8s; }
+.poster-fade img:nth-child(3) { animation-delay: 16s; }
+.poster-fade img:nth-child(4) { animation-delay: 24s; }
+.poster-fade img:nth-child(5) { animation-delay: 32s; }
+.poster-fade img:nth-child(6) { animation-delay: 40s; }
+
+@keyframes posterFade {
+    0% {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    8% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    23% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 80px;
+    }
+
+    .hero-banner {
+        min-height: 680px;
+        padding: 55px 36px;
+    }
+
+    .hero-banner-images::after {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(5, 0, 20, 0.96) 0%,
+                rgba(5, 0, 20, 0.82) 45%,
+                rgba(5, 0, 20, 0.35) 100%
+            );
+    }
+
+    .titulo-principal,
+    .titulo-seccion {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-banner {
+        min-height: 640px;
+        padding: 40px 24px;
+        border-radius: 24px;
+    }
+
+    .btn-moodcine {
+        width: 100%;
+    }
+
+    .poster-pelicula {
+        height: 320px;
+    }
 }
