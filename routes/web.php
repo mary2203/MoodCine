@@ -1,19 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\RecommendationController;
 
+Route::get('/', function () {
 
-//ruta para mostrar la pagina del moodcine 
-Route::get('/', [RecommendationController::class, 'index']);
+    $heroImages = File::files(public_path('images/hero'));
 
-//ruta para recibir los datos del formulario de recomendacion y mostrar las recomendaciones de las peliculas
+    return view('welcome', compact('heroImages'));
+
+});
+
+Route::get('/moodcine', [RecommendationController::class, 'index']);
+
+//ruta para recibir los datos del formulario
 Route::post('/recomendar', [RecommendationController::class, 'recomendar']);
 
-//ruta para mejecutar la funcion del controlador que muestra la pagina de recomendaciones
+//ruta para mostrar recomendaciones
 Route::get('/recomendaciones', [RecommendationController::class, 'verRecomendaciones']);
-
 
 Route::get('/nosotros', function () {
     return view('nosotros');

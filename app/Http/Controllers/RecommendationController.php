@@ -81,7 +81,7 @@ class RecommendationController extends Controller
         //aqui muestra las peliculas para que sean aleatorias
         $peliculasMostradas = $this->peliculas;
         shuffle($peliculasMostradas);
-        $peliculasMostradas = array_slice($peliculasMostradas, 0, 5);
+        $peliculasMostradas = array_slice($peliculasMostradas, 0, 3);
         
         return view('moodcine', compact('peliculasMostradas'));
     }
@@ -96,15 +96,14 @@ class RecommendationController extends Controller
 
         //Aqui se guarda las entradas del formulario
         MovieRecommendation::create([
-            'estado_animo'=>$request->estado_animo,
-            'genero'=>$request->genero,
-            'plataforma'=>$request->plataforma
+            'estado_animo' => $request->estado_animo,
+            'genero' => 'Elegido por IA',
+            'plataforma' => $request->plataforma
         ]);
 
         //estaq funcion se encarga de llamar al servicio de groq para obtener las recomendaciones de peliculas basadas en el estado de animo, genero y plataforma que el usuario selecciono en el formulario, y luego devuelve la respuesta en formato json para que el frontend pueda procesarla y mostrarla en el contenedor de recomendaciones.
         $respuesta = $groq->recomendarPeliculas(
             $request->estado_animo,
-            $request->genero,
             $request->plataforma
         );
         

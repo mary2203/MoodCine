@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Http;
 
 class GroqService
 {
-    public function recomendarPeliculas($estado, $genero, $plataforma)
+    public function recomendarPeliculas($estado, $plataforma)
     {
         $apiKey = env('GROQ_API_KEY');
 
         $prompt = "
-        Recomienda un top 5 de películas según estos datos:
+        Recomienda un top 6 de películas según estos datos:
 
         Estado de ánimo: {$estado}
-        Género favorito: {$genero}
         Plataforma: {$plataforma}
+        Elige automáticamente el género más adecuado según el estado de ánimo del usuario.
 
         Responde únicamente con un arreglo JSON válido.
         No incluyas texto adicional, no uses markdown, no uses ```json.

@@ -11,35 +11,26 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-moodcine">
+<nav class="navbar navbar-dark navbar-moodcine">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">MoodCine</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMoodCine" aria-controls="navbarMoodCine" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+            ← MoodCine
+        </a>
 
-        <div class="collapse navbar-collapse" id="navbarMoodCine">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/recomendaciones') }}">Recomendaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/nosotros') }}">Nosotros</a>
-                </li>
-            </ul>
-        </div>
+        <a href="{{ url('/moodcine') }}"
+           class="btn btn-moodcine">
+            Nueva búsqueda
+        </a>
+
     </div>
 </nav>
 
 <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="titulo-principal">Películas</h1>
+        <h1 class="titulo-principal">Por si no sabes qué elegir...</h1>
         <p class="subtitulo">
-            Esta es una selección de películas altamente recomendadas, incluye su trama, género y el mood que invoca
+            Esta es una selección de películas altamente recomendadas por nuestro equipo, incluye su trama, género y el mood que invoca.
         </p>
     </div>
 
