@@ -18,6 +18,34 @@
         <div class="ms-auto">
             <a class="nav-link d-inline-block" href="{{ url('/recomendaciones') }}">Recomendaciones</a>
         </div>
+        <div class="dropdown ms-auto">
+            <button class="btn btn-moodcine dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown">
+                {{ Auth::user()->name }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item"
+                    href="{{ route('profile.edit') }}">
+                        Perfil
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <form method="POST"
+                        action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                                class="dropdown-item">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
