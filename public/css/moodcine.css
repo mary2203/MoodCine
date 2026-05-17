@@ -906,3 +906,49 @@ img.rounded-circle {
     font-weight: 700;
     text-decoration: underline;
 }
+
+/*ya no te rompas porfa*/
+
+.auth-layout {
+    min-height: 100vh;
+    justify-content: flex-start !important;
+    padding-top: 120px !important;
+}
+
+.auth-logo {
+    width: 70px !important;
+    margin-bottom: 8px;
+}
+
+.auth-card {
+    max-width: 520px !important;
+    padding: 42px !important;
+    border-radius: 24px !important;
+}
+
+.auth-title {
+    margin-bottom: 34px !important;
+    text-align: center;
+    font-size: 2.1rem !important;
+}
+
+.auth-field {
+    margin-bottom: 20px !important;
+}
+
+.auth-field input {
+    height: 52px;
+    border: 2px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+.auth-actions {
+    margin-top: 26px;
+}
+
+.auth-footer-text {
+    margin-top: 28px !important;
+}
+
+.auth-page .btn-moodcine {
+    min-width: 145px;
+}
