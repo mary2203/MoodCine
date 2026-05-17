@@ -881,3 +881,28 @@ img.rounded-circle {
     margin-top: 8px;
     color: #ffb3b3 !important;
 }
+
+.auth-text {
+    margin-bottom: 24px;
+    color: #ffffff;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.auth-status {
+    margin-bottom: 18px;
+    color: #bfffc7 !important;
+    font-weight: 700;
+}
+
+.auth-actions-end {
+    justify-content: flex-end;
+}
+
+.auth-link-button {
+    border: none !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    text-decoration: underline;
+}
