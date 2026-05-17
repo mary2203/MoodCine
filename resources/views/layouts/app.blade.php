@@ -9,7 +9,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="/css/moodcine.css?v=railway7">
 
     <link rel="stylesheet" href="/css/moodcine.css?v=railway5">
 </head>
