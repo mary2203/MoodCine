@@ -56,7 +56,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/moodcine">
+                        <a class="nav-link" href="{{ route('login') }}">
                             Comenzar
                         </a>
                     </li>
@@ -85,7 +85,7 @@
                     según cómo te sientes, tu género favorito y tu plataforma de streaming.
                 </p>
 
-                <a href="/moodcine" class="btn btn-moodcine btn-lg px-5 py-3">
+                <a href="{{ route('login') }}" class="btn btn-moodcine btn-lg px-5 py-3">
                     Obtener recomendaciones
                 </a>
 

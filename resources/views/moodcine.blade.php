@@ -7,17 +7,45 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/moodcine.css') }}">
 </head>
-<body>
+<body class="moodcine-page">
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-moodcine">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">← Volver a inicio</a>
+<nav class="navbar navbar-dark navbar-moodcine">
+    <div class="container d-flex justify-content-between align-items-center">
 
-        <div class="ms-auto">
-            <a class="nav-link d-inline-block" href="{{ url('/recomendaciones') }}">Recomendaciones</a>
-        </div>
+        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+            ← Volver a inicio
+        </a>
+
+        @if (Auth::check())
+            <x-dropdown align="right" width="48">
+                <x-slot name="trigger">
+                    <button class="btn btn-moodcine">
+                        {{ Auth::user()->name }} ▾
+                    </button>
+                </x-slot>
+
+                <x-slot name="content">
+                    <x-dropdown-link :href="route('profile.edit')">
+                        Perfil
+                    </x-dropdown-link>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                    <x-dropdown-link
+                        :href="route('logout')"
+                        onclick="event.preventDefault(); this.closest('form').submit();"
+                    >
+                        Cerrar sesión
+                    </x-dropdown-link>
+                </form>
+            </x-slot>
+        </x-dropdown>
+    @endif
+
     </div>
 </nav>
 
@@ -73,7 +101,7 @@
     </div>
 
     <div class="mt-5">
-        <h2 class="text-center mb-4 titulo-seccion">Recomendaciones para ti</h2>
+        <h2 class="titulo-seccion text-center"> Recomendaciones para ti </h2>
 
         <div class="row g-4" id="contenedorPeliculas">
 
@@ -114,6 +142,12 @@
                 </div>
             @endforeach
 
+            <div class="text-center mt-5 mb-5 recomendaciones-extra">
+            <h3>¿Ninguna te convence?</h3>
+
+            <a href="{{ url('/recomendaciones') }}" class="btn btn-moodcine mt-3">
+            Ver más recomendaciones
+            </a>
         </div>
     </div>
 
