@@ -6,7 +6,7 @@
     <title>MoodCine</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/moodcine.css?v=railway8">
+    <link rel="stylesheet" href="/css/moodcine.css?v=railway9">
 </head>
 
 <body class="auth-page">
