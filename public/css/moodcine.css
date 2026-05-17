@@ -757,3 +757,127 @@ img.rounded-circle {
         padding: 26px;
     }
 }
+
+/*auth final fix*/
+
+.auth-page {
+    min-height: 100vh;
+    padding-top: 0 !important;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #ffffff;
+    background-image:
+        linear-gradient(rgba(10, 10, 20, 0.78), rgba(10, 10, 20, 0.92)),
+        url('../images/background/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.auth-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    padding: 40px 20px;
+}
+
+.auth-logo {
+    width: 90px;
+    height: auto;
+    object-fit: contain;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 34px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #4e1313, #110a2b);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.45);
+}
+
+.auth-title {
+    margin-bottom: 26px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.auth-field {
+    margin-bottom: 18px;
+}
+
+.auth-field label,
+.auth-remember label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.auth-field input {
+    width: 100%;
+    padding: 13px 15px;
+    border: none;
+    border-radius: 12px;
+    color: #1f1f1f !important;
+    background: #ffffff !important;
+    outline: none;
+}
+
+.auth-field input:focus {
+    box-shadow: 0 0 0 3px rgba(168, 40, 40, 0.35);
+}
+
+.auth-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0 22px;
+}
+
+.auth-remember input {
+    width: 18px;
+    height: 18px;
+    accent-color: #a82828;
+}
+
+.auth-remember label {
+    margin: 0;
+    cursor: pointer;
+}
+
+.auth-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.auth-actions a,
+.auth-footer-text a {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+.auth-actions a:hover,
+.auth-footer-text a:hover {
+    color: #d94b4b !important;
+}
+
+.auth-footer-text {
+    margin-top: 24px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+.auth-error {
+    margin-top: 8px;
+    color: #ffb3b3 !important;
+}
