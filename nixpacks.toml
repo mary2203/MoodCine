@@ -1,5 +1,9 @@
 [phases.setup]
-nixPkgs = ["php", "phpExtensions.bcmath", "nodejs_20"]
+nixPkgs = [
+  "php82",
+  "php82Extensions.bcmath",
+  "nodejs_20"
+]
 
 [phases.build]
 cmds = [
