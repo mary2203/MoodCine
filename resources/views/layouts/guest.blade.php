@@ -12,7 +12,7 @@
         
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <link rel="stylesheet" href="{{ asset('css/moodcine.css') }}">
+        <link rel="stylesheet" href="/css/moodcine.css?v=railway3">
 
     </head>
     <body class="auth-page">
