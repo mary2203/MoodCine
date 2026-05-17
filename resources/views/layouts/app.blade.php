@@ -12,7 +12,7 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ asset('css/moodcine.css') }}">
+        <link rel="stylesheet" href="/css/moodcine.css?v=railway3">
     </head>
     <body class="profile-page">
         <div class="min-h-screen auth-wrapper">
