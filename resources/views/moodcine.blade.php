@@ -22,8 +22,8 @@
         @if (Auth::check())
             <x-dropdown align="right" width="48">
                 <x-slot name="trigger">
-                    <button class="btn btn-moodcine">
-                        {{ Auth::user()->name }} ▾
+                    <button class="btn btn-moodcine inline-flex items-center px-4 py-2 rounded-xl text-white font-semibold bg-gradient-to-br from-[#a82828] to-[#7a1414] hover:scale-105 transition duration-200 shadow-lg">
+                        {{ Auth::user()->name }} <img src="{{Auth::user()->img}}" alt="Avatar" class="rounded-full w-8 h-8 ms-2"> ▾
                     </button>
                 </x-slot>
 
