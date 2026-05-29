@@ -71,4 +71,8 @@ Route::get('/auth/google/callback', function() {
     }
 });
 
+Route::get('/historial', [RecommendationController::class, 'historial'])
+    ->middleware(['auth'])
+    ->name('historial');
+
 require __DIR__.'/auth.php';

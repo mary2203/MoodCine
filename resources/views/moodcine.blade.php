@@ -19,6 +19,10 @@
             ← Volver a inicio
         </a>
 
+        <button class="btn btn-moodcine" onclick="window.location.href='{{ url('/historial') }}'">
+            Ver historial
+        </button>
+
         @if (Auth::check())
             <x-dropdown align="right" width="48">
                 <x-slot name="trigger">
