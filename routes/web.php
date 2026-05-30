@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\RecommendationController;
 
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     
     $heroImages = File::files(public_path('images/hero'));
@@ -38,5 +42,37 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/auth/google', function(){
+    return Socialite::driver('google')->redirect();
+}) ->name('google.login');
+
+Route::get('/auth/google/callback', function() {
+    try {
+        $googleUser = Socialite::driver('google')->user();
+
+        $user = User::where('email', $googleUser->getEmail())->first();
+
+        if (!$user) {
+            $user = User::create ([
+                'name' => $googleUser->getName(),
+                'email' => $googleUser->getEmail(),
+                'password' => bcrypt(uniqid()),
+                'img' => $googleUser->getAvatar(),
+            ]);
+
+        }
+        Auth::login($user);
+
+        return redirect('/moodcine');
+
+    } catch (Exception $e){
+        return redirect('/login');
+    }
+});
+
+Route::get('/historial', [RecommendationController::class, 'historial'])
+    ->middleware(['auth'])
+    ->name('historial');
 
 require __DIR__.'/auth.php';

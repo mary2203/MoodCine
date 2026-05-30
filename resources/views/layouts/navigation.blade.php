@@ -17,6 +17,7 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-4 py-2 rounded-xl text-white font-semibold bg-gradient-to-br from-[#a82828] to-[#7a1414] hover:scale-105 transition duration-200 shadow-lg">
                             <div>{{ Auth::user()->name }}</div>
+                             <img src="{{Auth::user()->img}}" alt="Avatar" class="rounded-full w-8 h-8 ms-2">
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

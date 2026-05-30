@@ -49,9 +49,33 @@
                 </a>
             @endif
 
-            <button type="submit" class="btn btn-moodcine">
-                Iniciar sesión
-            </button>
+            <x-primary-button class="ms-3">
+                {{ __('Iniciar sesión') }}
+            </x-primary-button>
+        </div>
+        <div class="flex items-center justify-center mt-4">
+    
+            <a href="{{ route('google.login') }}"
+            class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition">
+
+                <img src="https://logopng.com.br/logos/google-37.png"
+                    alt="Google"
+                    class="w-5 h-5">
+
+                <span class="text-sm text-gray-700">
+                    Iniciar sesión con Google
+                </span>
+
+            </a>
+
+        </div>
+        <div>
+            <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                {{ __("¿No tienes una cuenta?") }}
+                <a href="{{ route('register') }}" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                    {{ __('Regístrate') }}
+                </a>
+            </p>
         </div>
 
         <p class="auth-footer-text">
