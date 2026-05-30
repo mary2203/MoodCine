@@ -1,31 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodCine</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/moodcine.css?v=railway9">
+</head>
 
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
+<body class="auth-page">
+    <main class="auth-layout">
+        <a href="/">
+            <img src="/images/moodcine-logo.png" alt="MoodCine" class="auth-logo">
+        </a>
 
-        
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        <link rel="stylesheet" href="{{ asset('css/moodcine.css') }}">
-
-    </head>
-    <body class="auth-page">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="auth-card w-full sm:max-w-md mt-6 px-6 py-4 overflow-hidden">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
+        <section class="auth-card">
+            {{ $slot }}
+        </section>
+    </main>
+</body>
 </html>

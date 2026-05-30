@@ -1,25 +1,34 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('¿Olvidaste tu contraseña? No te preocupes. Ingresa tu correo electrónico y te enviaremos un enlace para restablecerla.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('password.email') }}" class="auth-form">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <h1 class="auth-title">Recuperar contraseña</h1>
+
+        <p class="auth-text">
+            ¿Olvidaste tu contraseña? No te preocupes. Ingresa tu correo electrónico y te enviaremos un enlace para restablecerla.
+        </p>
+
+        <x-auth-session-status class="auth-status" :status="session('status')" />
+
+        <div class="auth-field">
+            <label for="email">Correo electrónico</label>
+
+            <input
+                id="email"
+                type="email"
+                name="email"
+                value="{{ old('email') }}"
+                required
+                autofocus
+            >
+
+            <x-input-error :messages="$errors->get('email')" class="auth-error" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Enviar enlace para restablecer contraseña') }}
-            </x-primary-button>
+        <div class="auth-actions auth-actions-end">
+            <button type="submit" class="btn btn-moodcine">
+                Enviar enlace
+            </button>
         </div>
     </form>
 </x-guest-layout>
