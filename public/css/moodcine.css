@@ -689,3 +689,54 @@ img.rounded-circle {
     color: #ffffff !important;
 }
 
+ /*historial*/
+
+.sidebar-historial{
+    background: rgba(20,20,20,0.95);
+    border-radius: 20px;
+    padding: 20px;
+    height: 85vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-link{
+    display: block;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: white;
+    background: rgba(255,255,255,0.05);
+    transition: all .3s ease;
+}
+
+.sidebar-link:hover{
+    background: rgba(229,9,20,0.25);
+    transform: translateX(4px);
+    color: white;
+}
+
+.active-sidebar{
+    background: #E50914;
+    color: white !important;
+}
+
+.historial-card{
+    background: rgba(20,20,20,0.96);
+    padding: 30px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.info-box{
+    background: rgba(255,255,255,0.08) !important;
+    border: none !important;
+    color: white !important;
+}
+
+.info-box:focus{
+    box-shadow: none !important;
+}
+
+
