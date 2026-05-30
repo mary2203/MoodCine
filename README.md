@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/moodcine-banner.jpg" alt="MoodCine Banner" width="900">
+  <img src="public/images/moodcine-banner.png" alt="MoodCine Banner" width="900">
 </p>
 
 Esta es una aplicación web desarrollada con Laravel que recomienda películas según el estado de ánimo del usuario y la plataforma de streaming seleccionada, el sistema utiliza inteligencia artificial para generar recomendaciones personalizadas y complementa los resultados con información obtenida desde TMDB.
