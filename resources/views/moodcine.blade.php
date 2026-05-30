@@ -24,28 +24,30 @@
         </button>
 
         @if (Auth::check())
-            <x-dropdown align="right" width="48">
-                <x-slot name="trigger">
-                    <button class="btn btn-moodcine inline-flex items-center px-4 py-2 rounded-xl text-white font-semibold bg-gradient-to-br from-[#a82828] to-[#7a1414] hover:scale-105 transition duration-200 shadow-lg">
-                        {{ Auth::user()->name }} <img src="{{Auth::user()->img}}" alt="Avatar" class="rounded-full w-8 h-8 ms-2"> ▾
-                    </button>
-                </x-slot>
+            <div class="user-menu">
+                <button type="button" class="btn btn-moodcine user-menu-button" onclick="toggleUserMenu()">
+                    {{ Auth::user()->name }}
 
-                <x-slot name="content">
-                    <x-dropdown-link :href="route('profile.edit')">
+                    @if (Auth::user()->img)
+                        <img src="{{ Auth::user()->img }}" alt="Avatar" class="user-avatar">
+                    @endif
+                </button>
+
+                <div id="userMenuDropdown" class="user-menu-dropdown">
+                    <a href="{{ route('profile.edit') }}">
                         Perfil
                     </a>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit">
-                            Cerrar sesión
-                        </button>
-                    </form>
-                </div>
-            </div>
-        @endif
 
+                            <button type="submit">
+                                Cerrar sesión
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endif
     </div>
 </nav>
 
