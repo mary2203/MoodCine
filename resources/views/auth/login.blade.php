@@ -60,7 +60,7 @@
 
                 <img src="https://logopng.com.br/logos/google-37.png"
                     alt="Google"
-                    class="w-5 h-5">
+                    class="google-login-icon">
 
                 <span class="text-sm text-gray-700">
                     Iniciar sesión con Google
